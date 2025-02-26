@@ -1,33 +1,164 @@
-.menu-toggle {
-    display: none;
-    font-size: 1.5rem;
-    color: #fff;
+/* Progress Bar */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: #00d4ff;
+    z-index: 2000;
+    transition: width 0.3s ease;
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+    background: #fff;
+    color: #1e1e2f;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
     cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        display: none;
-        width: 100%;
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
+#theme-toggle:hover {
+    background: #00d4ff;
+    color: #fff;
 }
-#about {
+
+/* Light Theme */
+body.light-theme {
+    background: linear-gradient(135deg, #f0f0f5, #d9d9e6);
+    color: #1e1e2f;
+}
+
+body.light-theme .navbar {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1e1e2f;
+}
+
+body.light-theme .nav-links a {
+    color: #1e1e2f;
+}
+
+body.light-theme .hero::before {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+body.light-theme .about-section,
+body.light-theme .work-card {
+    background: rgba(255, 255, 255, 0.8);
+    color: #1e1e2f;
+}
+
+body.light-theme .work-card p {
+    color: #555;
+}
+
+/* Work Card Tooltip */
+.work-card {
+    position: relative;
+}
+
+.work-card::after {
+    content: attr(data-info);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #00d4ff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.work-card:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+}
+
+/* Contact Section */
+.contact-section {
     padding: 4rem 2rem;
     text-align: center;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-#about.visible {
-    opacity: 1;
-    transform: translateY(0);
+.contact-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #00d4ff;
+}
+
+#open-contact-form {
+    padding: 0.8rem 2rem;
+    background: #00d4ff;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#open-contact-form:hover {
+    transform: scale(1.05);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 3000;
+}
+
+.modal-content {
+    background: #1e1e2f;
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 500px;
+    margin: 10% auto;
+    position: relative;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #fff;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 5px;
+    background: #3a3a5a;
+    color: #fff;
+}
+
+#contact-form button {
+    padding: 0.8rem 2rem;
+    background: #00d4ff;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#contact-form button:hover {
+    background: #00b4d8;
 }

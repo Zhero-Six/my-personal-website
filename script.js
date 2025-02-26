@@ -37,7 +37,7 @@ function type() {
         setTimeout(type, 50);
     } else if (!isDeleting && charIndex > currentPhrase.length) {
         isDeleting = true;
-        setTimeout(type, 1000); // Pause before deleting
+        setTimeout(type, 1000);
     } else if (isDeleting && charIndex < 0) {
         isDeleting = false;
         phraseIndex = (phraseIndex + 1) % phrases.length;
@@ -45,7 +45,7 @@ function type() {
     }
 }
 
-type(); // Start the typing effect
+type();
 
 // Scroll Animation for About Section
 const aboutSection = document.getElementById('about');
@@ -60,4 +60,52 @@ function checkScroll() {
 }
 
 window.addEventListener('scroll', checkScroll);
-checkScroll(); // Check on page load
+checkScroll();
+
+// Theme Toggle
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+});
+
+// Load saved theme
+if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-theme');
+}
+
+// Scroll Progress Bar
+const progressBar = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    progressBar.style.width = `${scrollPercent}%`;
+});
+
+// Contact Form Modal
+const openModalBtn = document.getElementById('open-contact-form');
+const modal = document.getElementById('contact-modal');
+const closeModal = document.querySelector('.close-modal');
+const contactForm = document.getElementById('contact-form');
+
+openModalBtn.addEventListener('click', () => {
+    modal.style.display = 'block';
+});
+
+closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Message sent! (This is a demo—add real functionality here.)');
+    modal.style.display = 'none';
+    contactForm.reset();
+});
