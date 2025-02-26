@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Contact</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="particles"></div>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">YourName</div>
+            <div class="menu-toggle">☰</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button id="theme-toggle">Toggle Theme</button></li>
+            </ul>
+        </nav>
+        <div class="progress-bar" id="scroll-progress"></div>
+    </header>
+    <!-- Contact Content -->
+    <section id="contact" class="contact-section">
+        <h2>Contact Me</h2>
+        <form id="contact-form">
+            <div class="form-group">
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <span class="error-message" id="name-error"></span>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <span class="error-message" id="email-error"></span>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email-confirm" name="email-confirm" placeholder="Confirm Your Email" required>
+                <span class="error-message" id="email-confirm-error"></span>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" placeholder="Create a Password" required>
+                <span class="error-message" id="password-error"></span>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password-confirm" name="password-confirm" placeholder="Confirm Password" required>
+                <span class="error-message" id="password-confirm-error"></span>
+            </div>
+            <div class="form-group">
+                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                <span class="error-message" id="message-error"></span>
+            </div>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+    <script src="script.js"></script>
+    <script>
+        // Form Validation
+        const contactForm = document.getElementById('contact-form');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const emailConfirmInput = document.getElementById('email-confirm');
+        const passwordInput = document.getElementById('password');
+        const passwordConfirmInput = document.getElementById('password-confirm');
+        const messageInput = document.getElementById('message');
+        const nameError = document.getElementById('name-error');
+        const emailError = document.getElementById('email-error');
+        const emailConfirmError = document.getElementById('email-confirm-error');
+        const passwordError = document.getElementById('password-error');
+        const passwordConfirmError = document.getElementById('password-confirm-error');
+        const messageError = document.getElementById('message-error');
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+        function validateName() {
+            const value = nameInput.value.trim();
+            if (value.length < 2) {
+                nameError.textContent = 'Name must be at least 2 characters';
+                nameError.classList.add('active');
+                nameInput.classList.add('invalid');
+                nameInput.classList.remove('valid');
+                return false;
+            } else {
+                nameError.textContent = '';
+                nameError.classList.remove('active');
+                nameInput.classList.remove('invalid');
+                nameInput.classList.add('valid');
+                return true;
+            }
+        }
+
+        function validateEmail() {
+            const value = emailInput.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) {
+                emailError.textContent = 'Please enter a valid email';
+                emailError.classList.add('active');
+                emailInput.classList.add('invalid');
+                emailInput.classList.remove('valid');
+                return false;
+            } else {
+                emailError.textContent = '';
+                emailError.classList.remove('active');
+                emailInput.classList.remove('invalid');
+                emailInput.classList.add('valid');
+                validateEmailConfirm();
+                return true;
+            }
+        }
+
+        function validateEmailConfirm() {
+            const emailValue = emailInput.value.trim();
+            const confirmValue = emailConfirmInput.value.trim();
+            if (confirmValue === '') {
+                emailConfirmError.textContent = 'Please confirm your email';
+                emailConfirmError.classList.add('active');
+                emailConfirmInput.classList.add('invalid');
+                emailConfirmInput.classList.remove('valid');
+                return false;
+            } else if (confirmValue !== emailValue) {
+                emailConfirmError.textContent = 'Emails do not match';
+                emailConfirmError.classList.add('active');
+                emailConfirmInput.classList.add('invalid');
+                emailConfirmInput.classList.remove('valid');
+                return false;
+            } else {
+                emailConfirmError.textContent = '';
+                emailConfirmError.classList.remove('active');
+                emailConfirmInput.classList.remove('invalid');
+                emailConfirmInput.classList.add('valid');
+                return true;
+            }
+        }
+
+        function validatePassword() {
+            const value = passwordInput.value;
+            const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
+            if (!passwordRegex.test(value)) {
+                passwordError.textContent = 'Password must be 8+ chars, with 1 uppercase, 1 number, 1 special char';
+                passwordError.classList.add('active');
+                passwordInput.classList.add('invalid');
+                passwordInput.classList.remove('valid');
+                return false;
+            } else {
+                passwordError.textContent = '';
+                passwordError.classList.remove('active');
+                passwordInput.classList.remove('invalid');
+                passwordInput.classList.add('valid');
+                validatePasswordConfirm();
+                return true;
+            }
+        }
+
+        function validatePasswordConfirm() {
+            const passwordValue = passwordInput.value;
+            const confirmValue = passwordConfirmInput.value;
+            if (confirmValue === '') {
+                passwordConfirmError.textContent = 'Please confirm your password';
+                passwordConfirmError.classList.add('active');
+                passwordConfirmInput.classList.add('invalid');
+                passwordConfirmInput.classList.remove('valid');
+                return false;
+            } else if (confirmValue !== passwordValue) {
+                passwordConfirmError.textContent = 'Passwords do not match';
+                passwordConfirmError.classList.add('active');
+                passwordConfirmInput.classList.add('invalid');
+                passwordConfirmInput.classList.remove('valid');
+                return false;
+            } else {
+                passwordConfirmError.textContent = '';
+                passwordConfirmError.classList.remove('active');
+                passwordConfirmInput.classList.remove('invalid');
+                passwordConfirmInput.classList.add('valid');
+                return true;
+            }
+        }
+
+        function validateMessage() {
+            const value = messageInput.value.trim();
+            if (value.length < 10) {
+                messageError.textContent = 'Message must be at least 10 characters';
+                messageError.classList.add('active');
+                messageInput.classList.add('invalid');
+                messageInput.classList.remove('valid');
+                return false;
+            } else {
+                messageError.textContent = '';
+                messageError.classList.remove('active');
+                messageInput.classList.remove('invalid');
+                messageInput.classList.add('valid');
+                return true;
+            }
+        }
+
+        function validateForm() {
+            const isNameValid = validateName();
+            const isEmailValid = validateEmail();
+            const isEmailConfirmValid = validateEmailConfirm();
+            const isPasswordValid = validatePassword();
+            const isPasswordConfirmValid = validatePasswordConfirm();
+            const isMessageValid = validateMessage();
+            submitBtn.disabled = !(isNameValid && isEmailValid && isEmailConfirmValid && isPasswordValid && isPasswordConfirmValid && isMessageValid);
+            return isNameValid && isEmailValid && isEmailConfirmValid && isPasswordValid && isPasswordConfirmValid && isMessageValid;
+        }
+
+        nameInput.addEventListener('input', validateName);
+        emailInput.addEventListener('input', () => {
+            validateEmail();
+            validateEmailConfirm();
+        });
+        emailConfirmInput.addEventListener('input', validateEmailConfirm);
+        passwordInput.addEventListener('input', () => {
+            validatePassword();
+            validatePasswordConfirm();
+        });
+        passwordConfirmInput.addEventListener('input', validatePasswordConfirm);
+        messageInput.addEventListener('input', validateMessage);
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (validateForm()) {
+                alert('Message sent! (This is a demo—add real functionality here.)');
+                contactForm.reset();
+                resetForm();
+            }
+        });
+
+        function resetForm() {
+            nameInput.classList.remove('valid', 'invalid');
+            emailInput.classList.remove('valid', 'invalid');
+            emailConfirmInput.classList.remove('valid', 'invalid');
+            passwordInput.classList.remove('valid', 'invalid');
+            passwordConfirmInput.classList.remove('valid', 'invalid');
+            messageInput.classList.remove('valid', 'invalid');
+            nameError.textContent = '';
+            emailError.textContent = '';
+            emailConfirmError.textContent = '';
+            passwordError.textContent = '';
+            passwordConfirmError.textContent = '';
+            messageError.textContent = '';
+            nameError.classList.remove('active');
+            emailError.classList.remove('active');
+            emailConfirmError.classList.remove('active');
+            passwordError.classList.remove('active');
+            passwordConfirmError.classList.remove('active');
+            messageError.classList.remove('active');
+            submitBtn.disabled = true;
+        }
+    </script>
+</body>
+</html>
