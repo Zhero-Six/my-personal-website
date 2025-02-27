@@ -1,11 +1,12 @@
 # My Personal Website
 
-A responsive personal website built with HTML, CSS, and JavaScript, featuring a modern futuristic design with interactive animations and a particle background. The site includes four pages—Home, About, Work, and Contact—with a functional contact form powered by Formspree and local images across all pages.
+A responsive personal website built with HTML, CSS, and JavaScript, featuring a modern futuristic design with interactive animations and a particle background. The site includes four pages—Home, About, Work, and Contact—with a functional contact form powered by Formspree, local images, and social media links across all pages.
 
 ## Features
 - **Modern Futuristic Design**: Dark gradient theme with neon cyan (`#00ffcc`) and pink (`#ff007a`) accents, glassy effects, and sleek typography using the Roboto font.
 - **Particle Background**: Dynamic, interactive particle effect using Particles.js, with neon-colored particles and lines.
 - **Local Images**: Custom images from the `./images/` directory on each page, styled with hover zoom and neon effects.
+- **Social Media Links**: Icons for X, Facebook, Instagram, GitHub, WhatsApp, and Email in the footer of all pages, larger on Contact page.
 - **Interactive Animations**:
   - Pulsing logo in the header.
   - Hover underlines and lift effects on navigation links.
@@ -21,7 +22,7 @@ A responsive personal website built with HTML, CSS, and JavaScript, featuring a 
 
 ## Project Structure
 personal-website/
-├── personal-website/images/           # Folder for local images (e.g., home.jpg, about.jpg)
+├── images/           # Folder for local images (e.g., home.jpg, about.jpg)
 ├── index.html       # Home page
 ├── about.html       # About page
 ├── work.html        # Work page
@@ -38,49 +39,53 @@ personal-website/
    - No local installs needed. The site uses:
      - Roboto font via Google Fonts CDN.
      - Particles.js via CDN (`https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js`).
+     - Simple Icons via CDN for social links.
    - Requires an internet connection for CDNs; offline use skips these features.
 3. **Add Local Images**:
    - Create an `images` folder in the project directory.
    - Add your images (e.g., `home.jpg`, `about.jpg`, `work.jpg`, `contact.jpg`).
-   - Ensure filenames match the `src` attributes in HTML (e.g., `./images/home.jpg`).
-4. **Run Locally**:
+   - Ensure filenames match the `src` attributes in HTML.
+4. **Update Social Links**:
+   - In each HTML file, replace placeholder URLs in `.social-links` with your profiles (e.g., `https://x.com/yourusername`, `mailto:your-email@example.com`).
+5. **Run Locally**:
    - Open `index.html` in a web browser to view the site.
-   - Test navigation (links or ☰ toggle), animations (scroll, hover, click particles), and form submission.
+   - Test navigation, animations, images, social links, and form submission.
 
 ## Customization
 - **Content**:
-  - Edit placeholders in HTML files (e.g., `[Your Name]`, `[your interests]`, `[your-email@example.com]`).
-  - Update `work.html` with your projects or achievements.
+  - Edit placeholders in HTML (e.g., `[Your Name]`, `[your interests]`, `[your-email@example.com]`).
+  - Update `work.html` with your projects.
 - **Images**:
-  - Replace image filenames in `src` attributes if needed (e.g., `./images/my-home-photo.png`).
-  - Adjust `.page-image` in `styles.css` for size (e.g., `max-width: 400px`) or effects.
+  - Replace filenames in `src` attributes (e.g., `./images/my-home-pic.png`).
+  - Adjust `.page-image` in `styles.css` for size or effects.
+- **Social Links**:
+  - Update `href` values in `.social-links` with your actual profiles.
+  - Modify `.social-icon` size (e.g., `width: 30px`) or hover effects in `styles.css`.
 - **Styling**:
   - Modify `styles.css`:
-    - Colors: Change `#00ffcc` or `#ff007a` to your palette.
+    - Colors: Change `#00ffcc` or `#ff007a`.
     - Font: Update Google Fonts link and `font-family`.
-    - Animations: Adjust timing or effects (e.g., `pulse` duration).
-  - Example: Change image border color:
+    - Animations: Adjust timing or effects.
+  - Example: Change social icon color:
     ```css
-    .page-image { border: 2px solid #ff007a; }
+    .social-icon { filter: invert(1) hue-rotate(300deg); }
     ```
 - **Particles**:
-  - Edit the `particlesJS` config in HTML (e.g., `"color": { "value": "#ffffff" }`).
-- **Logo**:
-  - Replace `My Site` in `.logo` with your name or brand.
+  - Edit `particlesJS` config in HTML (e.g., `"color": { "value": "#ffffff" }`).
 
 ## Contact Form Integration with Formspree
 The contact form in `contact.html` uses [Formspree](https://formspree.io/):
 1. **Sign Up**:
    - Create a free Formspree account and click "New Form."
 2. **Get Endpoint**:
-   - Set your email as the recipient and copy the endpoint (e.g., `https://formspree.io/f/xexampleid`).
+   - Set your email and copy the endpoint (e.g., `https://formspree.io/f/xexampleid`).
 3. **Update HTML**:
    - In `contact.html`, replace the `action` attribute:
      ```html
      <form id="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
      ```
 4. **Test Live**:
-   - Deploy and submit the form. Check your email for submissions.
+   - Deploy and submit the form. Check your email.
 
 ## Deployment
 To make the site live:
@@ -91,34 +96,35 @@ To make the site live:
 2. **Upload Files**:
    - Include all files and the `images` folder.
 3. **Verify**:
-   - Test the live URL for navigation, animations, particles, images, and form functionality.
+   - Test the live URL for navigation, animations, images, social links, and form functionality.
 
 ## Technical Details
-- **HTML**: Static pages with inline scroll animation and Particles.js scripts.
+- **HTML**: Static pages with inline scripts and social links.
 - **CSS**:
-  - Uses CSS animations (`@keyframes`) and transitions for interactivity.
-  - Responsive design with media queries and flexbox for image layouts.
+  - Uses animations (`@keyframes`) and transitions.
+  - Responsive design with media queries and flexbox.
 - **JavaScript**:
-  - `script.js`: Handles nav toggle and form feedback.
-  - Inline `<script>`: Scroll animations and Particles.js config.
+  - `script.js`: Nav toggle and form feedback.
+  - Inline `<script>`: Scroll animations and Particles.js.
 - **Dependencies**:
   - Google Fonts (`Roboto`) via CDN.
   - Particles.js via CDN.
+  - Simple Icons via CDN.
   - Formspree for form submissions (optional).
 
 ## Troubleshooting
-- **Images Not Showing**: Verify the `images` folder is in the project root and filenames match `src` paths (case-sensitive).
-- **Particles Not Showing**: Check internet connection for CDN.
+- **Images Not Showing**: Verify `images` folder and `src` paths.
+- **Social Icons Not Loading**: Check internet for CDN.
 - **Form Not Sending**: Confirm Formspree endpoint and deployment.
 
 ## Future Enhancements
 - Add a portfolio gallery with hover zoom on `work.html`.
 - Integrate AJAX for form submission (Formspree Gold).
-- Include more interactive image effects (e.g., lightbox).
+- Enhance social links with tooltips.
 
 ## License
 Open for personal use and modification. Share or adapt freely!
 
 ## Credits
 - Created on February 27, 2025.
-- Built with Particles.js for the dynamic background.
+- Built with Particles.js and Simple Icons.
