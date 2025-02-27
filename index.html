@@ -28,6 +28,20 @@
     <footer>
         <p>&copy; 2025 Victor Mochoge. All rights reserved.</p>
     </footer>
+    <script>
+        function handleScroll() {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+    
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll); // Trigger on load
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
