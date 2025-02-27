@@ -145,14 +145,46 @@ p:hover {
 }
 
 footer {
-    text-align: center;
-    padding: 1.5rem;
     background: rgba(10, 10, 46, 0.9);
     color: #e0e0e0;
     position: fixed;
     bottom: 0;
     width: 100%;
     box-shadow: 0 -2px 10px rgba(0, 255, 204, 0.2);
+    padding: 0.5rem 1rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.social-links {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    max-width: 400px;
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    filter: invert(1) hue-rotate(180deg);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+    filter: invert(1) hue-rotate(300deg);
+}
+
+.contact-social-links .social-icon {
+    width: 36px;
+    height: 36px;
 }
 
 form {
@@ -269,32 +301,6 @@ button:active {
     flex-shrink: 0;
 }
 
-/* Social Links Styles */
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 0.5rem;
-}
-
-.social-icon {
-    width: 24px;
-    height: 24px;
-    filter: invert(1) hue-rotate(180deg); /* Neon cyan effect */
-    transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.social-icon:hover {
-    transform: scale(1.2);
-    filter: invert(1) hue-rotate(300deg); /* Neon pink on hover */
-}
-
-/* Larger icons on Contact page */
-.contact-social-links .social-icon {
-    width: 36px;
-    height: 36px;
-}
-
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -346,5 +352,15 @@ button:active {
     .about-content {
         flex-direction: column;
         text-align: center;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .social-links {
+        width: 100%;
+        max-width: none;
     }
 }
