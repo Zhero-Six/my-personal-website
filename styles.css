@@ -1,3 +1,14 @@
+/* New particle styles */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -37,7 +48,7 @@ nav {
     color: #00ffcc;
     text-transform: uppercase;
     letter-spacing: 2px;
-    animation: pulse 2s infinite ease-in-out; /* Pulsing logo */
+    animation: pulse 2s infinite ease-in-out;
 }
 
 .nav-links {
@@ -74,7 +85,7 @@ nav {
 }
 
 .nav-links a:hover::after {
-    width: 100%; /* Underline animation */
+    width: 100%;
 }
 
 .nav-toggle {
@@ -93,7 +104,7 @@ main {
 section {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease; /* Scroll fade-in prep */
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 section.visible {
@@ -116,7 +127,7 @@ h1 {
 }
 
 h1:hover {
-    text-shadow: 0 0 25px rgba(0, 255, 204, 0.8); /* Glow on hover */
+    text-shadow: 0 0 25px rgba(0, 255, 204, 0.8);
 }
 
 p {
@@ -126,7 +137,7 @@ p {
 }
 
 p:hover {
-    color: #e0e0e0; /* Brighten on hover */
+    color: #e0e0e0;
 }
 
 footer {
@@ -140,7 +151,6 @@ footer {
     box-shadow: 0 -2px 10px rgba(0, 255, 204, 0.2);
 }
 
-/* Contact Form Styles */
 form {
     max-width: 600px;
     margin: 2rem auto;
@@ -166,7 +176,7 @@ label {
 }
 
 label:hover {
-    transform: translateX(5px); /* Slide on hover */
+    transform: translateX(5px);
 }
 
 input, textarea {
@@ -210,7 +220,7 @@ button:hover {
 }
 
 button:active {
-    transform: scale(0.95); /* Click feedback */
+    transform: scale(0.95);
 }
 
 #form-message {
@@ -222,10 +232,9 @@ button:active {
 }
 
 #form-message.show {
-    opacity: 1; /* Fade in on submit */
+    opacity: 1;
 }
 
-/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -237,7 +246,6 @@ button:active {
     100% { transform: scale(1); text-shadow: 0 0 5px rgba(0, 255, 204, 0.5); }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
